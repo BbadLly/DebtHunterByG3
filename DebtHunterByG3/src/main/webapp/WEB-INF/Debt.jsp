@@ -12,7 +12,7 @@
         <title>Debt Hunter - Main</title>
     </head>
     <body>
-        <form action="AddDebtToBoardServlet" method="POST">
+        <form action="AddDebtToBoard" method="POST">
             Debt  
             <p>Debt name </p>
             <p><input type="text" name="debtname" value="${name}" required/></p>
