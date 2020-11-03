@@ -13,7 +13,7 @@
     </head>
     <body>
         <form action="Main" method="POST">
-        <p>E-mail  <input type="text" name="email" value="${email}" /> </p>
+        <p>E-mail  <input type="email" name="email" value="${email}" /> </p>
         <p>Password  <input type="password" name="password" value="${password}" /> </p>
         <input type="submit" name="Log in" />  
         <p><a href="Register"> Sign up</a></p>
