@@ -31,12 +31,12 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            request.getRequestDispatcher("/WEB-INF/Main.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("/Login.jsp").forward(request, response);
-        }
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            request.getRequestDispatcher("/WEB-INF/Main.jsp").forward(request, response);
+//        } else {
+//            request.getRequestDispatcher("/Login.jsp").forward(request, response);
+//        }
         request.getRequestDispatcher("/Login.jsp").forward(request, response);
     }
 

@@ -37,23 +37,36 @@ public class AddDebtToBoardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_DebtHunter_war_1.0-SNAPSHOTPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_DebtHunterByG3_war_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
         String debtName = request.getParameter("name") ;
         String debtMail = request.getParameter("email") ;
         String description = request.getParameter("desc") ;
         String c = request.getParameter("cost") ;
         int cost = Integer.parseInt(c) ;
-        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
-                .setParameter("email", debtMail).getSingleResult() ;
-        Debts d = new Debts() ;
-        if (u == null && u.getEmail().equals(debtMail)) {
-            em.createNamedQuery("INSERT INTO Debts (debt_name, debtor_mail, Description, Cost) VALUES (?,?,?,?)")
-                .setParameter("debtname", debtName)
-                .setParameter("debtmail", debtMail)
-                .setParameter("description", description)
-                .setParameter("cost", cost) 
-                .executeUpdate() ;  
+//        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
+//                .setParameter("email", debtMail).getSingleResult() ;        
+        Users u = em.find(Users.class, 1) ;
+        if (u != null) {
+//            em.createNamedQuery("INSERT INTO Debts (debt_name, debtor_mail, Description, Cost) VALUES (?,?,?,?)")
+//                .setParameter("debtname", debtName)
+//                .setParameter("debtmail", debtMail)
+//                .setParameter("description", description)
+//                .setParameter("cost", cost) 
+//                .executeUpdate() ;  
+            em.getTransaction().begin() ; 
+            Debts d = new Debts() ;
+            d.setDebtName(debtName);
+            d.setDebtorMail(debtMail);
+            d.setDescription(description);
+            d.setCost(cost);
+            d.setUsersId(u); ;
+            em.persist(d) ;
+            em.close() ;
+            request.setAttribute("debtname", debtName);
+            request.setAttribute("debtmail", debtMail);
+            request.setAttribute("description", description);
+            request.setAttribute("cost", cost);            
             request.getRequestDispatcher("/WEB-INF/TestAdd.jsp").forward(request, response);
         } else {
             request.setAttribute("message", "Try again!!");

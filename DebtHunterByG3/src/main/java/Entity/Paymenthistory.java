@@ -25,7 +25,7 @@ import javax.validation.constraints.Size;
  * @author GuideKai
  */
 @Entity
-@Table(name = "PAYMENTHISTORY", catalog = "", schema = "APP")
+@Table(name = "PAYMENTHISTORY")
 @NamedQueries({
     @NamedQuery(name = "Paymenthistory.findAll", query = "SELECT p FROM Paymenthistory p"),
     @NamedQuery(name = "Paymenthistory.findByPaymentId", query = "SELECT p FROM Paymenthistory p WHERE p.paymentId = :paymentId"),
@@ -105,7 +105,7 @@ public class Paymenthistory implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity4.Paymenthistory[ paymentId=" + paymentId + " ]";
+        return "Entity.Paymenthistory[ paymentId=" + paymentId + " ]";
     }
     
 }

@@ -6,7 +6,9 @@
 package Servlet;
 
 import Entity.Users;
+import static Entity.Users_.id;
 import java.io.IOException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -41,8 +43,9 @@ public class MainServlet extends HttpServlet {
         String userName = request.getParameter("email");
         String password = request.getParameter("password");
 //        int i = Integer.parseInt(userName) ;
-        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
-                .setParameter("email", userName).getSingleResult() ;
+//        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
+//                .setParameter("email", userName).getSingleResult() ;
+        Users u = (Users) em.find(Users.class, 1) ;
 //        UsersJpaController uc =  new UsersJpaController(emf) ;
 //        Users u = uc.findUsersByEmail(userName);  
 //        System.out.println(u.toString());

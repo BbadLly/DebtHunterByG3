@@ -1,6 +1,7 @@
 DROP TABLE debts;
-DROP TABLE users;
 DROP TABLE paymenthistory;
+DROP TABLE users;
+
 
 CREATE TABLE debts (
     debt_id      INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,

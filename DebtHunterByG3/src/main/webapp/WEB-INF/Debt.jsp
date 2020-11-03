@@ -22,7 +22,8 @@
             <p><input type="text" name="description" value="${desc}"></p>
             <p>Cost</p>
             <p><input type="number" name="cost" value="${cost}" required/></p>
-            <p><input type="submit" name="Add"></p>            
+            <p><input type="submit" name="Add"></p>  
+            ${message}
         </form>
     </body>
 </html>

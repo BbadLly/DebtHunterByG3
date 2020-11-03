@@ -12,9 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-<!--        ${debtname}
+        ${debtname}
         ${debtmail}
         ${description}
-        ${cost} -->
+        ${cost} 
     </body>
 </html>
