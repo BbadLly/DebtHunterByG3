@@ -45,7 +45,7 @@ public class MainServlet extends HttpServlet {
 //        int i = Integer.parseInt(userName) ;
 //        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
 //                .setParameter("email", userName).getSingleResult() ;
-Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
+        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
                 .setParameter("email", userName).getSingleResult() ;        
 //Users u = (Users) em.find(Users.class, 1) ;
 //        UsersJpaController uc =  new UsersJpaController(emf) ;
