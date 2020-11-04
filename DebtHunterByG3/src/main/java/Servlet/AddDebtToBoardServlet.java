@@ -55,7 +55,7 @@ public class AddDebtToBoardServlet extends HttpServlet {
         Users u = (Users) session.getAttribute("user");
         if (u != null) {
 //            String generatedID[] = {"debt_id"};
-            String sql = "INSERT INTO Debts (debt_name, debtor_mail, Description, Cost) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO DEBTS (DEBT_NAME, DEBT_MAIL, DESCRIPTION, COST) VALUES (?,?,?,?)";
             Debts d = new Debts();
             try ( Connection conn = DatabaseConnection.getConn();  
                     PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
