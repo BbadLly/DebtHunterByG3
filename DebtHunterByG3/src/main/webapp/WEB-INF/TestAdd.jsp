@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1> Debt ${ID} : by ${userid}</h1>        
+        <h1> Debt ${ID} : by ${userEmail}</h1>        
         <p> List: ${debtname} </p>
         <p> Debtor: ${debtmail} </p>
         <p> Description: ${description} </p>

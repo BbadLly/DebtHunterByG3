@@ -44,9 +44,9 @@ public class AddDebtToBoardServlet extends HttpServlet {
             throws ServletException, IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_DebtHunterByG3_war_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
-        String debtName = request.getParameter("name");
+        String debtName = request.getParameter("debtname");
         String debtMail = request.getParameter("email");
-        String description = request.getParameter("desc");
+        String description = request.getParameter("description");
         String c = request.getParameter("cost");
         int cost = Integer.parseInt(c);
 //        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
@@ -93,12 +93,13 @@ public class AddDebtToBoardServlet extends HttpServlet {
 //            d.setUsersId(u); ;
 //            em.persist(d) ;
 //            em.close() ;
+            int asd = 50;
             request.setAttribute("ID", d.getDebtId());
             request.setAttribute("debtname", debtName);
             request.setAttribute("debtmail", debtMail);
             request.setAttribute("description", description);
             request.setAttribute("cost", cost);
-            request.setAttribute("userid", u.getId());
+            request.setAttribute("userEmail", u.getEmail());
 
             request.getRequestDispatcher("/WEB-INF/TestAdd.jsp").forward(request, response);
         } else {
