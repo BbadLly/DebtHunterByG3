@@ -18,6 +18,11 @@
         <input type="submit" name="Log in" />  
         <p><a href="Register"> Sign up</a></p>
         <p>${message}</p>
+<!--        <p>${1}</p>
+        <p>${2}</p>
+        <p>${3}</p>
+        <p>${4}</p>
+        <p>${5}</p>-->
         </form>
     </body>
 </html>

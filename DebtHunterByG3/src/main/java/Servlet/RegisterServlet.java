@@ -5,8 +5,15 @@
  */
 package Servlet;
 
+import Database.DatabaseConnection;
+import Entity.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +38,39 @@ public class RegisterServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/Register.jsp").forward(request, response);  
-    }
+//        String email = request.getParameter("email");
+//        String password = request.getParameter("password");
+//        String fname = request.getParameter("fname");
+//        String lname = request.getParameter("lname");
+//        String t = request.getParameter("tel");
+//        int tel = Integer.parseInt(t);
+//        Users u = new Users();
+//        
+//            String sql = "INSERT INTO USERS (EMAIL, PASSWORD, FIRSTNAME, LASTNAME, TEL) VALUES (?, ?, ?, ?, ?)";
+//            try ( Connection conn = DatabaseConnection.getConn();  
+//                    PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//                stm.setString(1, email);
+//                stm.setString(2, password);
+//                stm.setString(3, fname);
+//                stm.setString(4, lname);
+//                stm.setInt(5, tel);
+//
+//                ResultSet rs = stm.getGeneratedKeys();
+////                while (rs.next()) {
+////                    u.setId(rs.getInt(1));
+////                }
+//
+//                stm.executeUpdate();
+//                conn.close();
+//
+//            } catch (ClassNotFoundException ex) {
+//                System.out.println(ex);
+//            } catch (SQLException ex) {
+//                System.out.println(ex);
+//            }
+//            request.getRequestDispatcher("/Login.jsp").forward(request, response); 
+        }
+  
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

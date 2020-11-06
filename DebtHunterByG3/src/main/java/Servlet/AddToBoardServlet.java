@@ -9,6 +9,7 @@ import Database.DatabaseConnection;
 import Entity.Debts;
 import Entity.Users;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +28,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author GuideKai
  */
-@WebServlet(name = "AddDebtToBoardServlet", urlPatterns = {"/AddDebtToBoard"})
-public class AddDebtToBoardServlet extends HttpServlet {
+public class AddToBoardServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,8 +53,8 @@ public class AddDebtToBoardServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Users u = (Users) session.getAttribute("user");
         if (u != null) {
-//            String generatedID[] = {"debt_id"};
-            String sql = "INSERT INTO DEBTS (DEBT_NAME, DEBTOR_MAIL, DESCRIPTION, COST) VALUES (?, ?, ?, ?)";
+              String sql = "INSERT INTO DEBTS (DEBT_NAME, DEBTOR_MAIL, DESCRIPTION, COST, USERS_ID) VALUES (?, ?, ?, ?, ?)";
+//            String sql = "INSERT INTO DEBTS (DEBT_NAME, DEBTOR_MAIL, DESCRIPTION, COST) VALUES (?, ?, ?, ?)";
             Debts d = new Debts();
             try ( Connection conn = DatabaseConnection.getConn();  
                     PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -65,11 +64,11 @@ public class AddDebtToBoardServlet extends HttpServlet {
                 stm.setInt(4, cost);
                 stm.setInt(5, u.getId());
                 stm.executeUpdate();
-                
-                ResultSet rs = stm.getGeneratedKeys() ;
-                   while (rs.next()) {
-                        d.setDebtId(rs.getInt(1));
-                    }
+
+                ResultSet rs = stm.getGeneratedKeys();
+                while (rs.next()) {
+                    d.setDebtId(rs.getInt(1));
+                }
 
                 conn.close();
 
