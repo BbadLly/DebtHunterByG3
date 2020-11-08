@@ -18,7 +18,7 @@
         
         
         <h1>Debt</h1>
-        
+        <p><a href="Test"> Board </a> </p>
         
         <a href="Logout">Log out</a>
     </body>
