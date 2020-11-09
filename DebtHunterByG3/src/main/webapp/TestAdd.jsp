@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Home
-    Created on : Oct 13, 2020, 8:53:26 PM
+    Document   : TestAdd
+    Created on : Oct 31, 2020, 11:22:48 PM
     Author     : GuideKai
 --%>
 
@@ -9,11 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Debt Hunter - Home</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <br><a href="Login">Log in</a>
-        <br><a href="Register">Sign up</a> 
-        ${test}
+<!--        ${debtname}
+        ${debtmail}
+        ${description}
+        ${cost} -->
     </body>
 </html>

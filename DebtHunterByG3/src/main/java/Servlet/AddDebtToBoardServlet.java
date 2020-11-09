@@ -5,20 +5,28 @@
  */
 package Servlet;
 
+
+import Entity.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author GuideKai
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/Register"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "AddDebtToBoardServlet", urlPatterns = {"/AddDebtToBoard"})
+public class AddDebtToBoardServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +39,28 @@ public class RegisterServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/Register.jsp").forward(request, response);  
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_DebtHunter_war_1.0-SNAPSHOTPU");
+//        EntityManager em = emf.createEntityManager();
+//        String debtName = request.getParameter("name") ;
+//        String debtMail = request.getParameter("email") ;
+//        String description = request.getParameter("desc") ;
+//        String c = request.getParameter("cost") ;
+//        int cost = Integer.parseInt(c) ;
+//        Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
+//                .setParameter("email", debtMail).getSingleResult() ;
+//        Debts d = new Debts() ;
+//        if (u == null && u.getEmail().equals(debtMail)) {
+//            em.createNamedQuery("INSERT INTO Debts (debt_name, debtor_mail, Description, Cost) VALUES (?,?,?,?)")
+//                .setParameter("debtname", debtName)
+//                .setParameter("debtmail", debtMail)
+//                .setParameter("description", description)
+//                .setParameter("cost", cost) 
+//                .executeUpdate() ;  
+//            request.getRequestDispatcher("Main.jsp").forward(request, response);
+//        } else {
+//            request.setAttribute("message", "Try again!!");
+//            request.getRequestDispatcher("/WEB-INF/Debt.jsp").forward(request, response);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

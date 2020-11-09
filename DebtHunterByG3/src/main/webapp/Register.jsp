@@ -12,27 +12,26 @@
         <title>Debt Hunter | Sign Up</title>
     </head>
     <body>
-        <script>
-        function myfunction() {
-            var pass1 = document.getElementById("password").value;
-            var pass2 = document.getElementById("confirmed").value;
-            if (pass1 !== pass2) {
-                alert("Passwords Do not match");
-            } else {
-                alert("You're right !!");
-            }
-        }
-        ;
-        </script> 
-        <form action="AddUserToDB" method="POST">
-            <p>E-mail  <input type="email" name="email" value="" required/> </p>
-            <p>Password  <input type="password" name="password" id="password" value="" required/> </p>
-            <p>Confirmed Password  <input type="password" name="confirmed" id="confirmed" onkeyup="return myfunction()" required/> </p>
+        <form action="Login" method="POST">
+            <p>E-mail  <input type="email" name="email" required value="${email}" /> </p>
+            <p>Password  <input type="password" name="password" id="password" value="${password}" required/> </p>
+            <p>Confirmed Password  <input type="password" name="confirmed" id="confirmed" onkeyup="check();" required/> </p>
             <span id='message'></span>
-
-            <p>First Name  <input type="text" name="firstname" value="" required/> </p>
-            <p>Last Name  <input type="text" name="lastname" value="" required/> </p>
-            <p>Tel.  <input type="text" name="tel" value=""/> </p>                
+<!--            <script>
+                var check = function () {
+                    if (document.getElementById('password').value ===
+                            document.getElementById('confirmed').value) {
+                        document.getElementById('message').style.color = 'green';
+                        document.getElementById('message').innerHTML = 'matching';
+                    } else {
+                        document.getElementById('message').style.color = 'red';
+                        document.getElementById('message').innerHTML = 'not matching';
+                    }
+                };
+            </script>-->
+            <p>First Name  <input type="text" name="firstname" value="${fname}" required/> </p>
+            <p>Last Name  <input type="text" name="lastname" value="${lname}" required/> </p>
+            <p>Tel.  <input type="number" name="tel" value="${tel}"/> </p>                
             <p><input type="submit" name="Accept" /> </p>                
         </form>
     </body>

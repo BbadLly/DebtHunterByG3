@@ -5,18 +5,16 @@
  */
 package EntityController;
 
+import Entity.Users;
+import EntityController.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Entity.Debts;
-import Entity.Users;
-import EntityController.exceptions.NonexistentEntityException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -34,29 +32,11 @@ public class UsersJpaController implements Serializable {
     }
 
     public void create(Users users) {
-        if (users.getDebtsList() == null) {
-            users.setDebtsList(new ArrayList<Debts>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            List<Debts> attachedDebtsList = new ArrayList<Debts>();
-            for (Debts debtsListDebtsToAttach : users.getDebtsList()) {
-                debtsListDebtsToAttach = em.getReference(debtsListDebtsToAttach.getClass(), debtsListDebtsToAttach.getDebtId());
-                attachedDebtsList.add(debtsListDebtsToAttach);
-            }
-            users.setDebtsList(attachedDebtsList);
             em.persist(users);
-            for (Debts debtsListDebts : users.getDebtsList()) {
-                Users oldUsersIdOfDebtsListDebts = debtsListDebts.getUsersId();
-                debtsListDebts.setUsersId(users);
-                debtsListDebts = em.merge(debtsListDebts);
-                if (oldUsersIdOfDebtsListDebts != null) {
-                    oldUsersIdOfDebtsListDebts.getDebtsList().remove(debtsListDebts);
-                    oldUsersIdOfDebtsListDebts = em.merge(oldUsersIdOfDebtsListDebts);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -70,34 +50,7 @@ public class UsersJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Users persistentUsers = em.find(Users.class, users.getId());
-            List<Debts> debtsListOld = persistentUsers.getDebtsList();
-            List<Debts> debtsListNew = users.getDebtsList();
-            List<Debts> attachedDebtsListNew = new ArrayList<Debts>();
-            for (Debts debtsListNewDebtsToAttach : debtsListNew) {
-                debtsListNewDebtsToAttach = em.getReference(debtsListNewDebtsToAttach.getClass(), debtsListNewDebtsToAttach.getDebtId());
-                attachedDebtsListNew.add(debtsListNewDebtsToAttach);
-            }
-            debtsListNew = attachedDebtsListNew;
-            users.setDebtsList(debtsListNew);
             users = em.merge(users);
-            for (Debts debtsListOldDebts : debtsListOld) {
-                if (!debtsListNew.contains(debtsListOldDebts)) {
-                    debtsListOldDebts.setUsersId(null);
-                    debtsListOldDebts = em.merge(debtsListOldDebts);
-                }
-            }
-            for (Debts debtsListNewDebts : debtsListNew) {
-                if (!debtsListOld.contains(debtsListNewDebts)) {
-                    Users oldUsersIdOfDebtsListNewDebts = debtsListNewDebts.getUsersId();
-                    debtsListNewDebts.setUsersId(users);
-                    debtsListNewDebts = em.merge(debtsListNewDebts);
-                    if (oldUsersIdOfDebtsListNewDebts != null && !oldUsersIdOfDebtsListNewDebts.equals(users)) {
-                        oldUsersIdOfDebtsListNewDebts.getDebtsList().remove(debtsListNewDebts);
-                        oldUsersIdOfDebtsListNewDebts = em.merge(oldUsersIdOfDebtsListNewDebts);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -126,11 +79,6 @@ public class UsersJpaController implements Serializable {
                 users.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The users with id " + id + " no longer exists.", enfe);
-            }
-            List<Debts> debtsList = users.getDebtsList();
-            for (Debts debtsListDebts : debtsList) {
-                debtsListDebts.setUsersId(null);
-                debtsListDebts = em.merge(debtsListDebts);
             }
             em.remove(users);
             em.getTransaction().commit();
