@@ -78,6 +78,9 @@
         <servlet-name>EditProfileServlet</servlet-name>
         <url-pattern>/EditProfile</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
+>>>>>>> parent of b0649e0... Merge branch 'main' of https://github.com/LLXGF1/DebtHunterByG3 into main
+=======
 >>>>>>> parent of b0649e0... Merge branch 'main' of https://github.com/LLXGF1/DebtHunterByG3 into main
     <session-config>
         <session-timeout>

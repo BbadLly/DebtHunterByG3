@@ -44,11 +44,14 @@ public class TestDB {
 //            pstmt.setInt(5, u.getId());
 //            pstmt.executeUpdate();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
              Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
                 .setParameter("email", userName).getSingleResult() ;   
       
 =======
+=======
+>>>>>>> parent of b0649e0... Merge branch 'main' of https://github.com/LLXGF1/DebtHunterByG3 into main
 //
 ////            Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
 ////                    .setParameter("email", userName).getSingleResult();
@@ -74,6 +77,9 @@ public class TestDB {
 //                int cost = rs.getInt("cost");
 //                System.out.println(debtName + "  " + debtorMail + "   " + description + " " + cost);
             }
+<<<<<<< HEAD
+>>>>>>> parent of b0649e0... Merge branch 'main' of https://github.com/LLXGF1/DebtHunterByG3 into main
+=======
 >>>>>>> parent of b0649e0... Merge branch 'main' of https://github.com/LLXGF1/DebtHunterByG3 into main
         } catch (Exception e) {
             System.out.println("Error1: " + e);
