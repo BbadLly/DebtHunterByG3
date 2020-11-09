@@ -64,7 +64,7 @@ public class MainServlet extends HttpServlet {
         }
         else {
             request.setAttribute("message", "Invalid Username or Password, Please try again.");
-            request.getRequestDispatcher("/Login/Login.jsp").forward(request, response);  
+            request.getRequestDispatcher("/Login.jsp").forward(request, response);  
         }
     }
 

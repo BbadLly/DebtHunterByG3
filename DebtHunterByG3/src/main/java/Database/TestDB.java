@@ -33,9 +33,9 @@ public class TestDB {
 ////            pstmt.setInt(5, 1);
 //            pstmt.executeUpdate();
                 
-//             Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
-//                .setParameter("email", userName).getSingleResult() ;   
-//      
+             Users u = em.createQuery("SELECT u from Users u WHERE u.email = :email", Users.class)
+                .setParameter("email", userName).getSingleResult() ;   
+      
         } catch (Exception e) {
             System.out.println("Error1: " + e);
         }
